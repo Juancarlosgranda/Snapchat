@@ -23,11 +23,20 @@ class iniciarSesionViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!){(user, error) in
         print("Intentando Iniciar sesión")
         if error != nil {
-            print("Se presento el siguiente error: \(String(describing: error))")
+            self.mostrarAlerta(title: "Usuario no registrado", message: "Si no posee una cuenta registrese en Snapchat", action: "Ok")
+            
         }else{
             print("Inicio de sesión exitoso")
+            self.performSegue(withIdentifier: "iniciarsesionsegue", sender: nil)
+            print("Iniciando sesion user: \(self.emailTextField.text!) pass: \(self.passwordTextField.text!)")
         }
         }
+    }
+    func mostrarAlerta(title:String, message: String, action: String) {
+        let alertaGuia = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelok = UIAlertAction(title: action, style: .default, handler: nil)
+        alertaGuia.addAction(cancelok)
+        present(alertaGuia, animated: true, completion: nil)
     }
     
 
