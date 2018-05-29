@@ -13,6 +13,10 @@ class CrearViewController: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var pass: UITextField!
+    
+    var ref: DatabaseReference!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,10 +28,12 @@ class CrearViewController: UIViewController {
             if error != nil {
                 self.mostrarAlerta(title: "ERROR!!!", message: "Intentelo de nuevo", action: "Ok")
             }else{
+                
                 Database.database().reference().child("usuarios").child(user!.user.uid).child("email").setValue(user!.user.email)
                 self.mostrarAlerta(title: "Registro exitoso!", message: "Presione volver para iniciar sesión", action: "Ok")
                 self.email.isEnabled = false
                 self.pass.isEnabled = false
+            
             }
         })
     }

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -189,7 +190,7 @@
         <!--Snaps View Controller-->
         <scene sceneID="YBD-qr-r0m">
             <objects>
-                <viewController id="OUo-LB-LwO" customClass="SnapsViewController" customModule="Snapchat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="OUo-LB-LwO" customClass="SnapsViewController" customModule="Snapchat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ym-Ue-Bqq"/>
                         <viewControllerLayoutGuide type="bottom" id="yRz-q3-bG3"/>
@@ -197,7 +198,19 @@
                     <view key="view" contentMode="scaleToFill" id="94T-BN-B6K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lbb-mx-7FQ">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lbb-mx-7FQ" firstAttribute="top" secondItem="0ym-Ue-Bqq" secondAttribute="bottom" id="5Y7-wh-FJq"/>
+                            <constraint firstItem="lbb-mx-7FQ" firstAttribute="leading" secondItem="94T-BN-B6K" secondAttribute="leadingMargin" id="Dnn-0X-qsg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lbb-mx-7FQ" secondAttribute="trailing" id="FYC-VZ-041"/>
+                            <constraint firstItem="yRz-q3-bG3" firstAttribute="top" secondItem="lbb-mx-7FQ" secondAttribute="bottom" id="mrV-Dl-hPU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0Bc-OV-vEh">
                         <barButtonItem key="leftBarButtonItem" title="Cerrar Sesión" id="1wd-ca-uVM">
@@ -211,10 +224,63 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="lbb-mx-7FQ" id="kSy-5l-CTa"/>
+                        <segue destination="eic-we-dkx" kind="show" identifier="versnapsegue" id="8ZD-SO-pzS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnV-WW-Bix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1495.2" y="-23.838080959520241"/>
+        </scene>
+        <!--Ver Snap View Controller-->
+        <scene sceneID="jAC-FW-ZOa">
+            <objects>
+                <viewController id="eic-we-dkx" customClass="VerSnapViewController" customModule="Snapchat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oYq-sy-opX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bdj-ag-Oye"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TLs-Ms-Mrm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yKl-ct-paM">
+                                <rect key="frame" x="21" y="84" width="333" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUG-PB-ZFf">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Tn-Ok-D6H">
+                                <rect key="frame" x="26" y="114.5" width="323" height="542.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yKl-ct-paM" firstAttribute="centerX" secondItem="TLs-Ms-Mrm" secondAttribute="centerX" id="4wR-so-iwJ"/>
+                            <constraint firstItem="4Tn-Ok-D6H" firstAttribute="centerX" secondItem="TLs-Ms-Mrm" secondAttribute="centerX" id="C7H-Jl-cu3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Tn-Ok-D6H" secondAttribute="trailing" constant="10" id="Cfg-sZ-sad"/>
+                            <constraint firstItem="Bdj-ag-Oye" firstAttribute="top" secondItem="4Tn-Ok-D6H" secondAttribute="bottom" constant="10" id="ERd-AC-Tgf"/>
+                            <constraint firstItem="4Tn-Ok-D6H" firstAttribute="top" secondItem="yKl-ct-paM" secondAttribute="bottom" constant="10" id="eIH-gn-tDu"/>
+                            <constraint firstItem="yKl-ct-paM" firstAttribute="top" secondItem="oYq-sy-opX" secondAttribute="bottom" constant="20" id="gjm-1S-ff0"/>
+                            <constraint firstItem="yKl-ct-paM" firstAttribute="leading" secondItem="TLs-Ms-Mrm" secondAttribute="leadingMargin" constant="5" id="jEb-qa-em7"/>
+                            <constraint firstItem="4Tn-Ok-D6H" firstAttribute="leading" secondItem="TLs-Ms-Mrm" secondAttribute="leadingMargin" constant="10" id="nqp-As-ics"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yKl-ct-paM" secondAttribute="trailing" constant="5" id="sA8-p6-Q13"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="4Tn-Ok-D6H" id="FoP-la-Tyf"/>
+                        <outlet property="label" destination="LUG-PB-ZFf" id="QIh-kx-zah"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RMD-1r-YKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1495" y="748"/>
         </scene>
         <!--Imagen View Controller-->
         <scene sceneID="iG2-9P-Tsd">
@@ -263,11 +329,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jDu-AW-n23">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="HNu-ce-nmQ">
-                            <connections>
-                                <action selector="camaraTapped:" destination="Ohe-LN-vnZ" id="I0D-N4-YXj"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="camera" id="HNu-ce-nmQ">
+                                <connections>
+                                    <action selector="camaraTapped:" destination="Ohe-LN-vnZ" id="I0D-N4-YXj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="organize" id="ocB-Up-Hnf">
+                                <connections>
+                                    <action selector="mediaTapped:" destination="Ohe-LN-vnZ" id="eNe-ui-67M"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="descripcionTextField" destination="0za-nh-oJR" id="NcL-cR-2Wt"/>
