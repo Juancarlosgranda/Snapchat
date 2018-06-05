@@ -24,6 +24,8 @@ class SnapsViewController: UIViewController, UITableViewDataSource, UITableViewD
             snap.descrip = (snapshot.value as! NSDictionary)["descripcion"] as! String
             snap.imagenID = (snapshot.value as! NSDictionary)["imagenID"] as! String
             snap.id = snapshot.key
+            snap.audioURL = (snapshot.value as! NSDictionary)["audioURL"] as! String
+            snap.audioID = (snapshot.value as! NSDictionary)["audioID"] as! String
             self.snaps.append(snap)
             self.tableView.reloadData()
         })

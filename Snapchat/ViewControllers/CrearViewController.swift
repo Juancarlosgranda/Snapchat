@@ -13,9 +13,7 @@ class CrearViewController: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var pass: UITextField!
-    
-    var ref: DatabaseReference!
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
